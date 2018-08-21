@@ -1,20 +1,31 @@
 package ru.javawebinar.topjava.model;
 
-import java.time.LocalDateTime;
+
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 
 public class Meal extends AbstractBaseEntity  {
+    public static final String ALL_SORTED = "Meal.getAll";
+    public static final String DELETE = "Meal.delete";
+    public static final String GET_BETWEEN = "Meal.getBetween";
+
+    private LocalDateTime dateTime;
 
 
-    private final LocalDateTime dateTime;
-
-    private final String description;
-
-    private final int calories;
+    private String description;
 
 
+    private int calories;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    public Meal() {
+    }
 
     public Integer getId() {
         return id;
@@ -51,6 +62,26 @@ public class Meal extends AbstractBaseEntity  {
 
     public LocalTime getTime(){return dateTime.toLocalTime();}
 
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     public String toString() {
