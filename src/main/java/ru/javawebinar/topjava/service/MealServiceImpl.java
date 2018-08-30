@@ -60,6 +60,11 @@ public class MealServiceImpl implements MealService {
              Assert.notNull(meal, "meal must not be null");
              return repository.save(meal, userId);
             }
+
+    @Override
+    public Meal getWithUser(int id, int userId) {
+        return checkNotFoundWithId(repository.getWithUser(id, userId), id);
+    }
 /*
     @Autowired
     public MealServiceImpl(MealRepository repository) { this.repository = repository; }

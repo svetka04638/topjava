@@ -30,6 +30,8 @@ public interface MealService {
     void update(Meal meal, int userId) throws NotFoundException;
 
     Meal create(Meal meal, int userId);
+
+    Meal getWithUser(int id, int userId);
 /*
     Meal create(Meal meal);
 
